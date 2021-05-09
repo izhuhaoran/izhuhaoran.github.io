@@ -5,6 +5,7 @@ tags:
   - 机器学习
   - 学习笔记
 toc: true
+declare: true
 ---
 
 # TASK1:**分别用线性SVM和高斯核SVM预测对数据进行分类**

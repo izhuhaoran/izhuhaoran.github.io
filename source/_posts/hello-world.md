@@ -1,10 +1,11 @@
 ---
-title: Hello World
+title: hexo测试文件
 date: 2020.05.10 10:06
 tags:
-  - 随笔
+  - 测试
 description: 初步创建hexo博客，测试文件
 toc: true
+declare: true
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
