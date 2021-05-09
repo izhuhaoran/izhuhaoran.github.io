@@ -2,25 +2,25 @@
 menu:
   主页: /
   #技术笔记: https://zhousiwei.gitee.io/ibooks/
-  随笔: /tags/随笔/
+  学习笔记: /tags/学习笔记/
 
 # subNav-子导航
 subNav:
   #- github: "#"
-  - github: "#" # (支持设置多个)
+  - github: "https://github.com/izhuhaoran" # (支持设置多个)
   #- gitee: "#" # 码云
   #- jianshu: "#" #简书
   # - cnblog: "#"
   # - blog: "#"
   # - csdn: "#"
   # - rss: "#"
-  - zhihu: "#"
+  - zhihu: "https://www.zhihu.com/people/meng-zhu-10-43-32"
   # - qq: "img/2434387555.jpg"
   # - weixin: "img/weixin_.png"
   # - weibo: "#"
   # - douban: "#"
   # - segmentfault: "#"
-  - bilibili: "#"
+  - bilibili: "https://space.bilibili.com/375062348"
   # - acfun: "#"
   # - mail: "mailto:zhousiwei0911@qq.com"
   # - facebook: "#"
@@ -108,13 +108,13 @@ disqus: false
 
 # 3、Gitment----基于GitHub的评论系统(关闭请设置gitment_owner为false)
 # 关于如何集成:https://www.jianshu.com/p/ac7658cc912f
-gitment_owner: false      #你的 GitHub ID
+gitment_owner: izhuhaoran      #你的 GitHub ID
 # 是否使用官方js(false可以提升访问速度，本地修改过一部分的js，官方js可能会出现服务器不稳定，不太建议使用)
-gitment_remote: false
-gitment_repo: ''          #存储评论的 repo name(需要在Github创建)
+# gitment_remote: false
+gitment_repo: 'izhuhaoran.github.io'          #存储评论的 repo name(需要在Github创建)
 gitment_oauth:
-  client_id: ''           #client ID
-  client_secret: ''       #client secret
+  client_id: '1eeea94dce6bac11eff0'           #client ID
+  client_secret: '3607ce38842842bca2675b413ca5cf85954dc31f'       #client secret
 
 # 4、Giteement----【国内用户建议使用这个，相对比较快】
 # 关于如何集成:https://www.jianshu.com/p/f5c4633524c7
@@ -271,14 +271,10 @@ smart_menu:
 
 # 友情链接
 friends:
-  GitHub:
-    url: https://github.com/JoeyBling
-  码云:
-    url: https://gitee.com/zhousiwei
-  简书:
-    url: https://www.jianshu.com/u/02cbf31a043a
-  CSDN:
-    url: https://blog.csdn.net/qq_30930805
+  GitHub_博客主题:
+    url: https://github.com/JoeyBliSng
+  其余链接后续更新:
+    url:https://izhuhaoran.github.io/
 
 # 关于我
-aboutme: 华中科技大学在读：<br>学习过python、machine leaning、web前端<br>一只菜鸡不断努力进步<br><br>联系QQ:2298600490<br>谢谢大家
+aboutme: 华中科技大学在读：<br>学习过python、C语言、汇编<br>机器学习ML、web前端<br>一只菜鸡不断努力进步<br><br>联系QQ:2298600490<br>谢谢大家
