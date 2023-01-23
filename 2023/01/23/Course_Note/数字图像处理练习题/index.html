@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/pig.png">
+  <link rel="icon" href="/img/pig.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhuhr">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数字图像处理练习题 1. 图像放大缩小  题目： 设一幅大小为M×N的灰度图像I中，现要变成（放大或缩小）为 P×Q的图像J，请写出J的生成算法。【参考函数：imresize】 解答： 算法流程为：  通过原始图像大小和目标图像大小，确定横轴纵轴缩放因子\(t_1, t_2\)，并创建目标图像。 对目标图像的一个像素位置\((x&#39;,y&#39;)\)，根据缩放因子算出映射在原始图像的位置\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像处理练习题">
+<meta property="og:url" content="https://izhuhaoran.github.io/2023/01/23/Course_Note/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%83%E4%B9%A0%E9%A2%98/index.html">
+<meta property="og:site_name" content="zhuhr">
+<meta property="og:description" content="数字图像处理练习题 1. 图像放大缩小  题目： 设一幅大小为M×N的灰度图像I中，现要变成（放大或缩小）为 P×Q的图像J，请写出J的生成算法。【参考函数：imresize】 解答： 算法流程为：  通过原始图像大小和目标图像大小，确定横轴纵轴缩放因子\(t_1, t_2\)，并创建目标图像。 对目标图像的一个像素位置\((x&#39;,y&#39;)\)，根据缩放因子算出映射在原始图像的位置\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/568080220239569.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/77531620247602.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/20191026142817345.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/1.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/2.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/3.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/4.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/363143510221145.png">
+<meta property="og:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/412055816236828.png">
+<meta property="article:published_time" content="2023-01-23T12:25:18.176Z">
+<meta property="article:modified_time" content="2023-01-23T12:25:18.176Z">
+<meta property="article:author" content="zhuhr">
+<meta property="article:tag" content="DIP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://izhuhaoran.github.io/images/CourseNoteImgs/568080220239569.png">
+  
+  
+  
+  <title>数字图像处理练习题 - zhuhr</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izhuhaoran.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"UT6cRjlpVU7vGlHXr1sWtyoX-gzGzoHsz","app_key":"3grbL1urRUtU4xhQOsSR8rMR","server_url":"https://ut6crjlp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhuhr Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数字图像处理练习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-23 20:25" pubdate>
+          2023年1月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数字图像处理练习题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数字图像处理练习题">数字图像处理练习题</h1>
+<h3 id="图像放大缩小">1. 图像放大缩小</h3>
+<ul>
+<li><p><mark><strong>题目</strong></mark>： <strong>设一幅大小为M×N的灰度图像I中，现要变成（放大或缩小）为 P×Q的图像J，请写出J的生成算法。【参考函数：imresize】</strong></p></li>
+<li><p><mark><strong>解答</strong></mark>：</p>
+<p><strong>算法流程为</strong>：</p>
+<ol type="1">
+<li>通过原始图像大小和目标图像大小，确定横轴纵轴缩放因子<span class="math inline">\(t_1, t_2\)</span>，并创建目标图像。</li>
+<li>对目标图像的一个像素位置<span class="math inline">\((x&#39;,y&#39;)\)</span>，根据缩放因子算出映射在原始图像的位置<span class="math inline">\((x,y)\)</span></li>
+<li>对于整数值<span class="math inline">\((x,y)\)</span>位置，直接将原始图像素值赋给目标图<span class="math inline">\((x&#39;,y&#39;)\)</span>位置，对于非整数<span class="math inline">\((x,y)\)</span>位置，使用插值法（双线性内插法）利用原始图<span class="math inline">\((x,y)\)</span>相邻四个像素值计算目标像素点值赋给目标图<span class="math inline">\((x&#39;,y&#39;)\)</span>位置。</li>
+<li>重复2-3步骤直到目标图所有像素写完毕。</li>
+</ol>
+<p><strong>算法具体运算细节即插值方法描述</strong>：设原始图像用<span class="math inline">\(f(x,y)\)</span>表示，原图像大小为<span class="math inline">\(M×N\)</span>，缩放后的图像为<span class="math inline">\(f(x&#39;,y&#39;)\)</span>，其大小为<span class="math inline">\(P×Q\)</span>, 则在x方向缩放因子<span class="math inline">\(t_1=P/M\)</span>, y轴方向上的缩放因子为<span class="math inline">\(t_2=Q/N\)</span>。则对于目标图像<span class="math inline">\(f(x&#39;,y&#39;)\)</span>来说，对于每个像素点位置<span class="math inline">\((x&#39;,y&#39;)\)</span>,其映射再原图上的坐标位置<span class="math inline">\((x,y)\)</span>有如下关系：<span class="math display">\[x=x&#39;/t_1 ,y=y&#39;/t_2\]</span> (1) 对于上式映射的<span class="math inline">\((x,y)\)</span>都是整数的点，直接将原图对应位置像素值赋给目标图<span class="math inline">\((x&#39;,y&#39; )\)</span>位置。(2) 对于<span class="math inline">\((x,y)\)</span>存在小数的情况，则需要使用插值(插值方法有很多，这里使用双线性内插法)法获得对应坐标值，这样对目标图每一个坐标都寻找到用原图像素映射的值，缩放结果图也便形成。</p>
+<p><strong>双线性内插法介绍</strong>：需要找到原图中与<span class="math inline">\((x,y)\)</span>位置最近的四个点设为<span class="math inline">\(Q_{11}(x_{1}, y_{1}),\enspace Q_{12}(x_{1}, y_{2}),\enspace Q_{21}(x_{2}, y_{1}), \enspace Q_{22}(x_{2}, y_{2})\)</span>。其位置关系如下：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/568080220239569.png" srcset="/img/loading.gif" lazyload width="30%">
+</div>
+<p>如图所示，我们要求P点位置像素值，所以先用关于X的单线性插值去分别计算R1、R2的像素值：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/77531620247602.png" srcset="/img/loading.gif" lazyload width="50%">
+</div>
+<p>再使用关于y方向的单线性插值计算P点的像素值，得出：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/20191026142817345.png" srcset="/img/loading.gif" lazyload width="50%">
+</div>
+<p>在上面的等式中的字母y1、y2、y都是已知的，f(x,y1)与f(x,y2）即为上一个式子中求出的R1、R2像素值。</p></li>
+</ul>
+<p> </p>
+<h3 id="中值滤波">2. 中值滤波</h3>
+<ul>
+<li><p><mark><strong>题目1</strong></mark>：<strong>请写出使用大小为3×3的模板对图像I进行中值滤波，生成图像J的方法。</strong></p></li>
+<li><p><mark><strong>解答</strong></mark>：算法流程描述如下：</p>
+<ol type="1">
+<li>获得源图像的首地址及图像的宽和高</li>
+<li>初始化目的图像，用以暂存结果图像，并初始化为0</li>
+<li>初始模板中心在(2,2)位置，逐个扫描图像中的像素点，将其3*3邻域各元素的像素值从小到大进行排序，将求得到的中间值赋值给目标图像中与当前点对应的像素点。</li>
+<li>循环步骤3,行列滑动模板位置，直到处理完源图像的全部像素点</li>
+</ol></li>
+</ul>
+<blockquote>
+<p>注意：步骤3中的循环扫描不能从(1,1)位置开始，模板为3*3，初始状态中心应该在(2,2)位置</p>
+</blockquote>
+<p><strong>matlab代码如下：</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clear;<br>A=imread(<span class="hljs-string">&#x27;num22&quot;,&#x27;</span>bmp);<br>subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);<br>B=rgb2 gray(A);<br>subimage(B);<br>title(<span class="hljs-string">&#x27;处理前的图);</span><br><span class="hljs-string"></span><br><span class="hljs-string">C=B;</span><br><span class="hljs-string">xsize=size(B);</span><br><span class="hljs-string">for k=2:(xsize(1)-1)</span><br><span class="hljs-string">    for j=2:(xsize(2)-1)</span><br><span class="hljs-string">        t=B(k-1:k+1,j-1:j+1);</span><br><span class="hljs-string">        C(k.j)=median(t(1:9));</span><br><span class="hljs-string">    end</span><br><span class="hljs-string">end</span><br><span class="hljs-string"></span><br><span class="hljs-string">subplot(1,2,2);</span><br><span class="hljs-string">subimage(C);</span><br><span class="hljs-string">title(&#x27;</span>处理后的图);<br></code></pre></td></tr></table></figure>
+<p> </p>
+<ul>
+<li><p><mark><strong>题目2</strong></mark>：<strong>简述中值滤波的特性和适用场合</strong>。</p></li>
+<li><p><mark><strong>解答</strong></mark>：中值滤波是一种非线性滤波，由于它在实际运算过程中并不需要图像的统计特性，所以比较方便。中值滤波首先是被应用在一维信号处理技术中，后来被二维图像信号处理技术所应用。在一定的条件下，可以克服线性滤波器所带来的图像细节模糊，而且对滤除脉冲干扰及图像扫描噪声最为有效。中值滤波的目的是保护图像边缘的同时去除噪声。</p></li>
+</ul>
+<p> </p>
+<h3 id="傅里叶变换">3. 傅里叶变换</h3>
+<ul>
+<li><p><mark><strong>题目1</strong></mark>： <strong>写出一维、二维离散傅立叶变换、反变换的计算公式。傅立叶系数的物理含义是什么？简述对一个二维图像进行快速傅里叶变换的方法。</strong></p></li>
+<li><p><mark><strong>解答</strong></mark>：</p>
+<p><strong>一维傅里叶变换(上)与反变换（下）</strong>：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/1.png" srcset="/img/loading.gif" lazyload width="35%">
+</div>
+<p><strong>二维傅里叶变换(上)与反变换（下）</strong>：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/2.png" srcset="/img/loading.gif" lazyload width="45%">
+</div>
+<p><strong>傅立叶系数的物理含义</strong>：</p>
+<p>傅里叶变换可以看做“数学的棱镜”，将时域信号分解为若干不同频率的频域信号，而不同傅立叶系数则代表了分解的不同频率信号的振幅。</p>
+<p><strong>二维图像进行快速傅里叶变换简述步骤</strong>：</p>
+<p>假设图像为一个M行N列的二维图像，用<span class="math inline">\(f(x,y)\)</span>表示, FFT变换结果为<span class="math inline">\(F(u,v)\)</span><strong>简述对其二维FFT步骤</strong>为：</p>
+<ol type="1">
+<li>根据基2快速傅里叶变换的计算要求，需要图像的行数M、列数N均满足2的n次方，如果不满足，在计算FFT之前先要对图像补零以满足2的n次。</li>
+<li>先按列变量y做一次长度为N的一维快速傅里叶变换FFT得到<span class="math inline">\(F(x,v)\)</span>: <span class="math display">\[F(x,v)=\frac{1}{N} \sum_{y=0}^{N-1}{f(x,y)e^{-j2\pi vy/N}}, v=0,1,..,N-1 \]</span></li>
+<li>再将第2步骤所得结果按x做一次长度为M的一维快速傅里叶变换得到最终结果<span class="math inline">\(F(u,v)\)</span>: <span class="math display">\[F(u,v)=\frac{1}{M} \sum_{x=0}^{N-1}{F(x,v)e^{-j2\pi ux/M}}, u=0,1,..,N-1 \]</span></li>
+</ol>
+<p>上述<strong>流程中使用了一维FFT</strong>，原理主要是将长序列DFT分解为若干短序列DFT，利用旋转因子W的周期性，对称性，可约性减少计算量。 <strong>一维快速傅里叶(基2时分)原理具体介绍如下</strong>：</p>
+<ol type="1">
+<li><p>假设信号序列为<span class="math inline">\(x(n)\)</span>，将其分解为偶数和奇数两个子序列即<span class="math inline">\(x(n)=x_1(n)+x_2(n)\)</span>, 两个子序列的长度都是N/2，<span class="math inline">\(x_1(n)\)</span>是偶数序列，<span class="math inline">\(x_2(n)\)</span>是奇数序列，则有：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/3.png" srcset="/img/loading.gif" lazyload width="70%">
+</div></li>
+<li><p>其中<span class="math inline">\(X_1(k)\)</span>和<span class="math inline">\(X_2(k)\)</span>分别为<span class="math inline">\(x_1(n)\)</span>和<span class="math inline">\(x_2(n)\)</span>的 N/2 点DFT。由于<span class="math inline">\(X_1(k)\)</span>和<span class="math inline">\(X_2(k)\)</span>均以 N／2为周期，且<span class="math inline">\(W_N^{k+N/2}=-W_N^k\)</span>，所以<span class="math inline">\(X(k)\)</span>又可表示为：</p>
+<div data-align="center">
+<img src="/images/CourseNoteImgs/4.png" srcset="/img/loading.gif" lazyload width="70%">
+</div>
+<p>即我们把一个N点的DFT拆成了两个N/2的DFT。</p></li>
+<li><p>上述步骤2只是一次划分，经过若干次递归迭代二分划分，则原本的DFT（普通傅里叶）的<span class="math inline">\(O(n^2)\)</span>时间复杂度 降为FFT（快速傅里叶）的<span class="math inline">\(O(n·log n)\)</span>。</p></li>
+</ol>
+<p> </p></li>
+</ul>
+<h3 id="七边缘检测">七、边缘检测</h3>
+<h4 id="canny算子">1、canny算子</h4>
+<ul>
+<li><p><strong>题目</strong>：<strong>请写出Canny算子检测边缘的详细步骤。</strong></p></li>
+<li><p><strong>解答</strong>：Canny边缘检测算法可以分为以下5个步骤</p>
+<ol type="1">
+<li>应用高斯滤波来平滑图像，目的是去除噪声。 总结一下这一步：高斯滤波其实就是将所指像素用周围的像素的某种均值代替(即卷积核)，卷积核尺寸越大，去噪能力越强，因此噪声越少，但图片越模糊，canny检测算法抗噪声能力越强，但模糊的副作用也会导致定位精度不高。</li>
+<li>找寻图像的强度梯度。</li>
+<li>根据梯度方向，对梯度强度幅值应用非最大抑制（non-maximum suppression），以消除边缘检测带来的杂散响应。</li>
+<li>用双阈值算法检测检测来确定真实的和潜在的边缘，并通过抑制孤立的弱边缘最终形成结果边缘.
+<ul>
+<li>选取系数TH和TL，比率为2:1或3:1。（一般取TH=0.3或0.2,TL=0.1）；</li>
+<li>将小于低阈值的点抛弃，赋0；将大于高阈值的点立即标记（这些点为确定边缘点），赋1或255；</li>
+<li>将小于高阈值，大于低阈值的点使用8连通区域确定（即：只有与TH像素连接时才会被接受，成为边缘点，赋 1或255）</li>
+</ul></li>
+</ol></li>
+</ul>
+<p> </p>
+<h3 id="八形态运算">八、形态运算</h3>
+<h4 id="图像腐蚀">1、图像腐蚀</h4>
+<ul>
+<li><p><strong>题目</strong>：<strong>设有一幅二值图像，采用 3×3的结构元（每个元素均为1）对其进行腐蚀操作，试写出得到结果图像的方法</strong>。</p></li>
+<li><p><strong>解答</strong>：腐蚀处理的结果是使原来的二值图像减小一圈, 原图A被结构B腐蚀的定义如下，z代表B的中心位置:</p>
+<p><span class="math display">\[A\bigodot B=\{z|
+  (B)_z \subseteq A \}\]</span> 可以理解为，移动结构B，如果结构B完全属于原图A的区域内，则保存该位置点，所有满足条件的点构成结构A被结构B腐蚀的结果。</p>
+<p>用结构体B对原图A进行腐蚀的整个过程如下： ⑴ 将3*3的结构元B在A中移动，即让B的中心循环扫描图像A的每一个像素。 ⑵ 用结构元素B的每个位置与其覆盖的二值图像同样位置做“与”操作 ⑶ 如果(2)结果中所有像素结果都为1，也即结构体B完全包含在A中，则此时目标图像对应B的中心位置像素为1，否则为0。</p>
+<p>示例结果如下, 有颜色代表像素为1，空白代表像素为0 ： <img src="/images/CourseNoteImgs/363143510221145.png" srcset="/img/loading.gif" lazyload alt="8.1" /></p></li>
+</ul>
+<p> </p>
+<h4 id="孔洞填充">2、孔洞填充</h4>
+<ul>
+<li><p><strong>题目</strong>：<strong>试写出孔洞填充的算法。对二值图像中所有被白色区域包围（封闭）的黑色像素即为孔洞。</strong></p></li>
+<li><p><strong>解答</strong>：孔洞填充的公式为：</p>
+<p><span class="math display">\[X_k=(X_{k-1} \oplus B) \cap A^c \qquad k=1,2,3,...\]</span></p>
+<p>设原包含孔洞的图像为A，原图补集为<span class="math inline">\(A^c\)</span>，用于填充膨胀的结构体为B，则<strong>孔洞填充算法流程</strong>：</p>
+<ol type="1">
+<li>将原图像A每个像素取反，获得补集原图像的补集记作<span class="math inline">\(A^c\)</span>，用来限制膨胀结果在孔洞内，防止膨胀超出孔洞区域范围；</li>
+<li>在原图孔洞中选择一个初始点，使用结构体B膨胀该点；</li>
+<li>将膨胀后的结果与原图补集<span class="math inline">\(A^c\)</span>相交，得到该轮次的结果<span class="math inline">\(X_k\)</span>。</li>
+<li>在原图孔洞中移动到下一个点，重复2~4步，直到第K步和第K+1步结果相同，填充完毕。</li>
+</ol>
+<p>上述算法步骤中使用了膨胀操作，下面简述<strong>膨胀操作</strong>过程： 膨胀处理的结果是使原来的二值图像扩大一圈, 原图A被结构B膨胀的定义如下，z代表B的中心位置:</p>
+<p><span class="math display">\[A\bigoplus B=\{z|
+(\hat{B})_z \bigcap A \neq \emptyset\}\]</span> 上式中<span class="math inline">\((\hat{B})_z\)</span>是结构体关于中心圆点反转的结构，膨胀可以理解为，移动结构B的反转结构<span class="math inline">\((\hat{B})_z\)</span>，如果与原图A存在重叠区域，也即交集不为空，则此时结构体中心位置对应在目标图结果中处像素为1，反之没有交集则为0。</p></li>
+</ul>
+<p> </p>
+<h4 id="粘连区域断开">3、粘连区域断开</h4>
+<ul>
+<li><p><strong>题目</strong>：<strong>设有两个白色区域，被一条细小的白线所连接，试设计一种算法，消除两个区域之间的细线，使两个区域分开。</strong></p></li>
+<li><p><strong>解答</strong>：使用开运算即可，开运算等于对原图先腐蚀后膨胀，可以用来消除小物体、在纤细点处分离物体、消除物体周围的毛刺等。设原图为A，结构体为B开运算的公式为：</p>
+<p><span class="math display">\[A \bigcirc B=(A\odot B) \oplus B\]</span></p>
+<p>分割两个细小白线连接的白色区域的步骤如下：</p>
+<ol type="1">
+<li>设置开运算结构B为N*N, N的大小根据细线的宽度而更改，要比细线宽度大。</li>
+<li>先对原图A使用结构体B进行腐蚀运算。</li>
+<li>对2的结果再次使用结构体B进行膨胀运算。</li>
+</ol>
+<blockquote>
+<p>注意，上述开运算步骤中使用了腐蚀和膨胀运算，这两种算法见前两题图像腐蚀和孔洞填充中介绍，这里不再赘述。</p>
+</blockquote></li>
+</ul>
+<p> </p>
+<h4 id="计算凸壳">4、计算凸壳</h4>
+<ul>
+<li><p><strong>题目</strong>：<strong>计算包围给定点集的最小凸多边形。</strong></p></li>
+<li><p><strong>解答</strong>：采用安德鲁算法计算最小凸包，流程简述如下： （1）将给定的点集合按照x坐标升序排列。x相同的话，按照y坐标升序排列 （2）创建凸包的上部U点序列：默认将x最小的两个点加入上凸包U，再将排序后的点按照x坐标从小到大的顺序依次加入凸包U，<strong>并检查U是否仍然为凸包</strong>。如果新加入的点使得U不再是凸多边形，那么就逆序依次删除已经插入U的点，直到U为凸多边形。 （3）创建凸包的下部L点序列：默认将x最大的两个点加入下凸包L, 再将排序后的点按照x坐标从大到小的顺序加入凸包L，<strong>并检查L是否仍然为凸包</strong>。如果新加入的点使得L不再是凸多边形，那么就逆序删除已经插入L的点，直到L为凸多边形。 （4）连接凸包的上部和下部： 最终外接凸多边形点集为凸包上部的点序列+凸包下部逆置后的点序列(下部形成是按照x从大到小，要逆序形成从小到大的序列)，每两个点之间连线，最后一个点和第一个点连线即是最终外接凸多边形。</p>
+<p><strong>检查是否为凸包的方法如下：</strong> 设将要加入点<span class="math inline">\(P_2\)</span>，凸包集中上一轮加入的节点为<span class="math inline">\(P_1\)</span>, 上上一轮加入的节点为<span class="math inline">\(P_0\)</span> , 则形成两个向量： <span class="math inline">\(\vec{a}=P_0 \rightarrow P_1\)</span>和 <span class="math inline">\(\vec{b}=P_0 \rightarrow P_2\)</span>。如果<span class="math inline">\(\vec{a} \times \vec{b} &lt; 0\)</span>, 则说明第二个向量<span class="math inline">\(\vec{b}\)</span>位于第一个向量<span class="math inline">\(\vec{a}\)</span>的逆时针处, 此时新加入节点<span class="math inline">\(P_2\)</span>会使结果不再是凸边形，需要逆序删除已经插入的点，直到加入<span class="math inline">\(P_2\)</span>后，保持凸包。</p>
+<p>上述判断方法示意图如下, 此时加入P2会使第二个向量<span class="math inline">\(\vec{b}\)</span>位于第一个向量<span class="math inline">\(\vec{a}\)</span>的逆时针处，凸包被破坏，需要逆序删除P1点。 <img src="/images/CourseNoteImgs/412055816236828.png" srcset="/img/loading.gif" lazyload alt="34" /></p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Course-Notes/" class="category-chain-item">Course_Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DIP/">#DIP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数字图像处理练习题</div>
+      <div>https://izhuhaoran.github.io/2023/01/23/Course_Note/数字图像处理练习题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhuhr</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/23/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/23/Linux_Note/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/" title="gcc/g++默认版本切换">
+                        <span class="hidden-mobile">gcc/g++默认版本切换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"UT6cRjlpVU7vGlHXr1sWtyoX-gzGzoHsz","appKey":"3grbL1urRUtU4xhQOsSR8rMR","path":"window.location.pathname","placeholder":"留下你的评论吧~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
