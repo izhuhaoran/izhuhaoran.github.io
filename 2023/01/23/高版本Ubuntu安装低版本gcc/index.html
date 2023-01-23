@@ -16,21 +16,24 @@
   <meta name="author" content="zhuhr">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="高版本Ubuntu安装低版本gccUbuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法 1. 首先需要简单介绍常用国内apt源–&gt;阿里云和清华云(此步骤只是参考可略过) 123456">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2023/01/23/hello-world/index.html">
+<meta property="og:title" content="高版本Ubuntu安装低版本gcc">
+<meta property="og:url" content="http://example.com/2023/01/23/%E9%AB%98%E7%89%88%E6%9C%ACUbuntu%E5%AE%89%E8%A3%85%E4%BD%8E%E7%89%88%E6%9C%ACgcc/index.html">
 <meta property="og:site_name" content="zhuhr">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="高版本Ubuntu安装低版本gccUbuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法 1. 首先需要简单介绍常用国内apt源–&gt;阿里云和清华云(此步骤只是参考可略过) 123456">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-23T03:17:20.431Z">
-<meta property="article:modified_time" content="2023-01-23T03:17:20.431Z">
+<meta property="article:published_time" content="2023-01-23T05:24:23.231Z">
+<meta property="article:modified_time" content="2023-01-23T05:43:09.941Z">
 <meta property="article:author" content="zhuhr">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="gcc&#x2F;g++">
+<meta property="article:tag" content="c&#x2F;c++">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - zhuhr</title>
+  <title>高版本Ubuntu安装低版本gcc - zhuhr</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="高版本Ubuntu安装低版本gcc"></span>
           
         </div>
 
@@ -224,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-23 11:17" pubdate>
-          2023年1月23日 上午
+        <time datetime="2023-01-23 13:24" pubdate>
+          2023年1月23日 下午
         </time>
       </span>
     
@@ -236,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          3.4k 字
         
       </span>
     
@@ -247,7 +250,7 @@
         
         
         
-          4 分钟
+          29 分钟
         
       </span>
     
@@ -293,25 +296,45 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">高版本Ubuntu安装低版本gcc</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="高版本Ubuntu安装低版本gcc"><a href="#高版本Ubuntu安装低版本gcc" class="headerlink" title="高版本Ubuntu安装低版本gcc"></a>高版本Ubuntu安装低版本gcc</h1><p>Ubuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法</p>
+<p><strong>1. 首先需要简单介绍常用国内apt源–&gt;阿里云和清华云(此步骤只是参考可略过)</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br> <br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>上面源中jammy标识为ubuntu22.04，若为其他版本Ubuntu，将对应jammy改为其他版本标识，如focal即可，常用的Ubuntu版本代号如下：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">22</span>.<span class="hljs-number">04</span>：jammy<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">20</span>.<span class="hljs-number">04</span>：focal<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">18</span>.<span class="hljs-number">04</span>：bionic<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">16</span>.<span class="hljs-number">04</span>：xenial<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p><strong>2. Ubuntu22.04默认安装gcc-11版本，如果需要安装低版本，可以修改apt源，添加低版本ubuntu源来安装</strong></p>
+<p>使用下面命令修改apt源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/apt/sources.list<br></code></pre></td></tr></table></figure>
 
+
+<p>如要安装gcc-7，在sources.list文件末尾添加Ubuntu 20.04：focal的源</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> focal main universe<br></code></pre></td></tr></table></figure>
+
+
+<p>如要安装gcc-5，在sources.list文件末尾添加Ubuntu 16.04：focal的源</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> xenial main universe<br></code></pre></td></tr></table></figure>
+
+
+<p>sources.list文件修改完毕后，执行以下命令加载源</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">sudo apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br></code></pre></td></tr></table></figure>
+
+
+<p>注意，有时update时会报错, 提示GPG error缺少公钥，多见于添加了xenial版本源</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">W: GPG error: http://mirrors.aliyun.com/ubuntu xenial InRelease: The <span class="hljs-keyword">following</span> signatures couldn<span class="hljs-string">&#x27;t be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32</span><br><span class="hljs-string">E: The repository &#x27;</span>http://mirrors.aliyun.com/ubuntu xenial InReleas<span class="hljs-string">e&#x27; is not signed.</span><br><span class="hljs-string">N: Updating from such a repository can&#x27;</span>t be done securely, <span class="hljs-keyword">and</span> <span class="hljs-keyword">is</span> therefore disabled <span class="hljs-keyword">by</span> <span class="hljs-keyword">default</span>.<br>N: See apt-secure(<span class="hljs-number">8</span>) manpage <span class="hljs-keyword">for</span> repository creation <span class="hljs-keyword">and</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">configuration</span> details.<br></code></pre></td></tr></table></figure>
+
+<p>此时，解决办法根据报错信息“NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32”导入对应公钥即可</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">40976</span>EAF437D05B5<br>sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">3</span>B4FE6ACC0B21F32<br></code></pre></td></tr></table></figure>
+
+<p>然后，再次sudo apt-get update，之后就可以直接apt安装gcc对应版本</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">5</span><br><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -319,6 +342,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Notes/" class="category-chain-item">Linux_Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ubuntu/">#ubuntu</a>
+      
+        <a href="/tags/gcc-g/">#gcc/g++</a>
+      
+        <a href="/tags/c-c/">#c/c++</a>
+      
+    </div>
   
 </div>
 
@@ -328,8 +383,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2023/01/23/hello-world/</div>
+      <div>高版本Ubuntu安装低版本gcc</div>
+      <div>http://example.com/2023/01/23/高版本Ubuntu安装低版本gcc/</div>
     </div>
     <div class="license-meta">
       
@@ -373,15 +428,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/" title="gcc/g++默认版本切换">
+                      <a href="/2023/01/23/%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="内网服务器设置代理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">gcc/g++默认版本切换</span>
+                        <span class="hidden-mobile">内网服务器设置代理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/" title="gcc/g++默认版本切换">
+                        <span class="hidden-mobile">gcc/g++默认版本切换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

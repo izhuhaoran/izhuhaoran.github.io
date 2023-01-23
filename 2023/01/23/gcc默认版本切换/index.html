@@ -16,21 +16,24 @@
   <meta name="author" content="zhuhr">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="gcc默认版本切换ubuntu系统中可能安装了多个版本的gcc&#x2F;g++ 如gcc-5，gcc-7,  gcc-9等等，在使用时，我们可以在命令直接指定gcc&#x2F;g++版本来确定使用哪个编译器 12g++-5 .&#x2F;test.cpp -o testg++-7 .&#x2F;test.cpp -o test  此外，我们还可以通过包管理工具update-alternatives来设置默认gcc&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2023/01/23/hello-world/index.html">
+<meta property="og:title" content="gcc&#x2F;g++默认版本切换">
+<meta property="og:url" content="http://example.com/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/index.html">
 <meta property="og:site_name" content="zhuhr">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="gcc默认版本切换ubuntu系统中可能安装了多个版本的gcc&#x2F;g++ 如gcc-5，gcc-7,  gcc-9等等，在使用时，我们可以在命令直接指定gcc&#x2F;g++版本来确定使用哪个编译器 12g++-5 .&#x2F;test.cpp -o testg++-7 .&#x2F;test.cpp -o test  此外，我们还可以通过包管理工具update-alternatives来设置默认gcc&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-23T03:17:20.431Z">
-<meta property="article:modified_time" content="2023-01-23T03:17:20.431Z">
+<meta property="article:published_time" content="2023-01-23T04:48:14.441Z">
+<meta property="article:modified_time" content="2023-01-23T05:41:57.891Z">
 <meta property="article:author" content="zhuhr">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="gcc&#x2F;g++">
+<meta property="article:tag" content="c&#x2F;c++">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - zhuhr</title>
+  <title>gcc/g++默认版本切换 - zhuhr</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="gcc/g++默认版本切换"></span>
           
         </div>
 
@@ -224,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-23 11:17" pubdate>
-          2023年1月23日 上午
+        <time datetime="2023-01-23 12:48" pubdate>
+          2023年1月23日 下午
         </time>
       </span>
     
@@ -236,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          814 字
         
       </span>
     
@@ -247,7 +250,7 @@
         
         
         
-          4 分钟
+          7 分钟
         
       </span>
     
@@ -293,25 +296,19 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">gcc/g++默认版本切换</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="gcc默认版本切换"><a href="#gcc默认版本切换" class="headerlink" title="gcc默认版本切换"></a>gcc默认版本切换</h1><p>ubuntu系统中可能安装了多个版本的gcc&#x2F;g++ 如gcc-5，gcc-7,  gcc-9等等，在使用时，我们可以在命令直接指定gcc&#x2F;g++版本来确定使用哪个编译器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++-5 ./test.cpp -o <span class="hljs-built_in">test</span><br>g++-7 ./test.cpp -o <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>此外，我们还可以通过包管理工具update-alternatives来设置默认gcc&#x2F;g++版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">设置gcc优先级，最后的数字代表优先程度，数值越大，优先程度越高，可自行调整各版本的优先级</span><br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50<br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70<br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90<br><span class="hljs-meta prompt_"># </span><span class="language-bash">设置g++优先级</span><br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-5 50<br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-7 70<br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-9 90<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看gcc各版本优先级</span><br>sudo update-alternatives --config gcc<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看g++各版本优先级</span><br>sudo update-alternatives --config g++<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<p>如上的命令后，gcc-9和g++-9的优先级设为最高，默认使用该版本，如需检查默认gcc&#x2F;g++版本，使用如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">gcc -v<br>g++ -v<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -319,6 +316,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CPP-Notes/" class="category-chain-item">CPP_Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ubuntu/">#ubuntu</a>
+      
+        <a href="/tags/gcc-g/">#gcc/g++</a>
+      
+        <a href="/tags/c-c/">#c/c++</a>
+      
+    </div>
   
 </div>
 
@@ -328,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2023/01/23/hello-world/</div>
+      <div>gcc/g++默认版本切换</div>
+      <div>http://example.com/2023/01/23/gcc默认版本切换/</div>
     </div>
     <div class="license-meta">
       
@@ -373,15 +402,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/" title="gcc/g++默认版本切换">
+                      <a href="/2023/01/23/%E9%AB%98%E7%89%88%E6%9C%ACUbuntu%E5%AE%89%E8%A3%85%E4%BD%8E%E7%89%88%E6%9C%ACgcc/" title="高版本Ubuntu安装低版本gcc">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">gcc/g++默认版本切换</span>
+                        <span class="hidden-mobile">高版本Ubuntu安装低版本gcc</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/01/23/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

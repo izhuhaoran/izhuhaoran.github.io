@@ -4,6 +4,120 @@
   
   
   <entry>
+    <title>ubuntu多用户共享文件夹、文件</title>
+    <link href="/2023/01/23/%E5%A4%9A%E7%94%A8%E6%88%B7%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/01/23/%E5%A4%9A%E7%94%A8%E6%88%B7%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="ubuntu多用户共享文件夹、文件操作"><a href="#ubuntu多用户共享文件夹、文件操作" class="headerlink" title="ubuntu多用户共享文件夹、文件操作"></a>ubuntu多用户共享文件夹、文件操作</h1><blockquote><p>linux多用户同时共享一个文件</p></blockquote><p><strong>主要思路就是用root权限创建文件夹，然后给文件夹分配用户组的权限，然后把所有需要访问这个文件夹的用户加到这个用户组当中来</strong></p><p><strong>例如有alex，bob两个用户，互相无法访问对方的home~文件夹，为了共享文件，可以让root用户在&#x2F;home中创建一个shared文件夹，然后创建一个用户组dev01</strong></p><p>在root或者sudo下：</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">groupadd</span> dev01<br></code></pre></td></tr></table></figure><p>然后将需要共享文件的用户添加到dev01这个用户组</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">usermod -<span class="hljs-selector-tag">a</span> -G dev01 alex<br>usermod -<span class="hljs-selector-tag">a</span> -G dev01 bob<br></code></pre></td></tr></table></figure><p>创建用户组之后并为文件夹更改组</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir <span class="hljs-regexp">/home/</span>dev_shared<br>chgrp dev01 <span class="hljs-regexp">/home/</span>dev_shared<br></code></pre></td></tr></table></figure><p>接下来更改文件夹权限，使得owner以及用户组可以访问,+s是为了确保之后添加进去的文件夹也继承同样的权限</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs stylus">chmod <span class="hljs-number">777</span> /home/dev_shared<br>chmod +s /home/dev_shared<br><br><span class="hljs-comment">// 补充若是已有的文件夹，需要加-R递归执行</span><br><span class="hljs-number">1</span> 修改用户组<br>chgrp <span class="hljs-selector-attr">[-R]</span> group test<span class="hljs-selector-class">.log</span><br><span class="hljs-function"><span class="hljs-title">chgrp</span><span class="hljs-params">(change group)</span></span> <span class="hljs-built_in">-R</span>(递归执行) 用户组名 文件/文件夹名（若非当前路径下的文件就写文件路径）<br><br><span class="hljs-number">2</span> 修改用户<br>chown <span class="hljs-selector-attr">[-R]</span> owner test<span class="hljs-selector-class">.log</span><br><span class="hljs-function"><span class="hljs-title">chown</span><span class="hljs-params">(change owner)</span></span> <span class="hljs-built_in">-R</span>(递归执行) 用户名 文件/文件夹名（若非当前路径下的文件就写文件路径）<br><br><span class="hljs-number">3</span> 修改用户组和用户<br>chown <span class="hljs-selector-attr">[-R]</span> group:owner test<span class="hljs-selector-class">.log</span><br><span class="hljs-function"><span class="hljs-title">chown</span><span class="hljs-params">(change owner)</span></span> <span class="hljs-built_in">-R</span>(递归执行) 用户组:用户名 文件/文件夹名（若非当前路径下的文件就写文件路径）<br></code></pre></td></tr></table></figure><p>至此，两人都可以访问&#x2F;home&#x2F;dev_shared文件夹了, 另外，用户可以自行检查自己所在的用户组</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">groups</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux_Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>内网服务器设置代理</title>
+    <link href="/2023/01/23/%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/"/>
+    <url>/2023/01/23/%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="内网服务器设置代理"><a href="#内网服务器设置代理" class="headerlink" title="内网服务器设置代理"></a>内网服务器设置代理</h1><blockquote><p>部分学校服务器不连外网，导致无法使用git、无法装包等问题<br>仅适用于服务器和本地电脑(可连接外网)处于同一局域网下(如校园网)</p></blockquote><p>步骤如下：</p><ol><li><p>本地电脑Clash，开启Allow LAN功能, 端口默认使用7890<br><img src="/images/LinuxNoteImgs/529462813239570.png" alt="599d1c0d1310dce9b0e4934bfa6e1f2"></p></li><li><p>本地电脑查看自身ip地址，可以使用ipconfig命令，如下ipv4地址为222.20.75.93<br><img src="/images/LinuxNoteImgs/3383113227437.png" alt="1"></p><p> 注意：部分电脑防火墙导致7890端口导致自身代理失败，需要在入站规则中增加一条端口，方法如下：<br> <strong>windows安全中心-&gt;防火墙和网络保护-&gt;高级设置-&gt;入站规则-&gt;新建规则</strong><br> <img src="/images/LinuxNoteImgs/405220714239572.png" alt="405220714239572"><br> <strong>只需要开放TCP即可，选择特定本地端口7890(端口号根据clash软件上的端口为准)</strong><br> <img src="/images/LinuxNoteImgs/171550914227439.png" alt="171550914227439"><br> 至此，本机已经可以被当做代理使用，接下来就是服务器如何使用代理</p></li><li><p>服务器对于各种命令使用代理，本地地址加端口（这里是222.20.75.93:7890）即可。</p><ul><li><p>(1) 对于<strong>git</strong>设置代理， 注意修改代理地址：</p> <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">// 设置代理</span><br>git config <span class="hljs-attr">--global</span> http<span class="hljs-selector-class">.proxy</span> http:<span class="hljs-comment">//222.20.75.93:7890</span><br>git config <span class="hljs-attr">--global</span> https<span class="hljs-selector-class">.proxy</span> https:<span class="hljs-comment">//222.20.75.93:7890</span><br><span class="hljs-comment">// 重置取消代理</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> http<span class="hljs-selector-class">.proxy</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> https.proxy<br></code></pre></td></tr></table></figure></li><li><p>(2) <strong>pip命令:</strong> 在 pip 命令的末尾加上 –proxy&#x3D;代理IP:端口</p> <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">pip</span> install robotframework --proxy=<span class="hljs-number">222.20.75.93:7890</span><br></code></pre></td></tr></table></figure></li><li><p>(3) 其他命令设置代理搜索方法即可，等待补充。</p></li></ul></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux_Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+      <tag>git</tag>
+      
+      <tag>pip</tag>
+      
+      <tag>clash</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>高版本Ubuntu安装低版本gcc</title>
+    <link href="/2023/01/23/%E9%AB%98%E7%89%88%E6%9C%ACUbuntu%E5%AE%89%E8%A3%85%E4%BD%8E%E7%89%88%E6%9C%ACgcc/"/>
+    <url>/2023/01/23/%E9%AB%98%E7%89%88%E6%9C%ACUbuntu%E5%AE%89%E8%A3%85%E4%BD%8E%E7%89%88%E6%9C%ACgcc/</url>
+    
+    <content type="html"><![CDATA[<h1 id="高版本Ubuntu安装低版本gcc"><a href="#高版本Ubuntu安装低版本gcc" class="headerlink" title="高版本Ubuntu安装低版本gcc"></a>高版本Ubuntu安装低版本gcc</h1><p>Ubuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法</p><p><strong>1. 首先需要简单介绍常用国内apt源–&gt;阿里云和清华云(此步骤只是参考可略过)</strong></p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br> <br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><br></code></pre></td></tr></table></figure><p>上面源中jammy标识为ubuntu22.04，若为其他版本Ubuntu，将对应jammy改为其他版本标识，如focal即可，常用的Ubuntu版本代号如下：</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">22</span>.<span class="hljs-number">04</span>：jammy<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">20</span>.<span class="hljs-number">04</span>：focal<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">18</span>.<span class="hljs-number">04</span>：bionic<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">16</span>.<span class="hljs-number">04</span>：xenial<br></code></pre></td></tr></table></figure><p><strong>2. Ubuntu22.04默认安装gcc-11版本，如果需要安装低版本，可以修改apt源，添加低版本ubuntu源来安装</strong></p><p>使用下面命令修改apt源</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/apt/sources.list<br></code></pre></td></tr></table></figure><p>如要安装gcc-7，在sources.list文件末尾添加Ubuntu 20.04：focal的源</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> focal main universe<br></code></pre></td></tr></table></figure><p>如要安装gcc-5，在sources.list文件末尾添加Ubuntu 16.04：focal的源</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> xenial main universe<br></code></pre></td></tr></table></figure><p>sources.list文件修改完毕后，执行以下命令加载源</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">sudo apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br></code></pre></td></tr></table></figure><p>注意，有时update时会报错, 提示GPG error缺少公钥，多见于添加了xenial版本源</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">W: GPG error: http://mirrors.aliyun.com/ubuntu xenial InRelease: The <span class="hljs-keyword">following</span> signatures couldn<span class="hljs-string">&#x27;t be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32</span><br><span class="hljs-string">E: The repository &#x27;</span>http://mirrors.aliyun.com/ubuntu xenial InReleas<span class="hljs-string">e&#x27; is not signed.</span><br><span class="hljs-string">N: Updating from such a repository can&#x27;</span>t be done securely, <span class="hljs-keyword">and</span> <span class="hljs-keyword">is</span> therefore disabled <span class="hljs-keyword">by</span> <span class="hljs-keyword">default</span>.<br>N: See apt-secure(<span class="hljs-number">8</span>) manpage <span class="hljs-keyword">for</span> repository creation <span class="hljs-keyword">and</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">configuration</span> details.<br></code></pre></td></tr></table></figure><p>此时，解决办法根据报错信息“NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32”导入对应公钥即可</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">40976</span>EAF437D05B5<br>sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">3</span>B4FE6ACC0B21F32<br></code></pre></td></tr></table></figure><p>然后，再次sudo apt-get update，之后就可以直接apt安装gcc对应版本</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">5</span><br><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux_Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+      <tag>gcc/g++</tag>
+      
+      <tag>c/c++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>gcc/g++默认版本切换</title>
+    <link href="/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/"/>
+    <url>/2023/01/23/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="gcc默认版本切换"><a href="#gcc默认版本切换" class="headerlink" title="gcc默认版本切换"></a>gcc默认版本切换</h1><p>ubuntu系统中可能安装了多个版本的gcc&#x2F;g++ 如gcc-5，gcc-7,  gcc-9等等，在使用时，我们可以在命令直接指定gcc&#x2F;g++版本来确定使用哪个编译器</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++-5 ./test.cpp -o <span class="hljs-built_in">test</span><br>g++-7 ./test.cpp -o <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure><p>此外，我们还可以通过包管理工具update-alternatives来设置默认gcc&#x2F;g++版本</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">设置gcc优先级，最后的数字代表优先程度，数值越大，优先程度越高，可自行调整各版本的优先级</span><br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50<br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70<br>sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90<br><span class="hljs-meta prompt_"># </span><span class="language-bash">设置g++优先级</span><br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-5 50<br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-7 70<br>sudo update-alternatives  --install /usr/bin/g++ g++ /usr/bin/g++-9 90<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看gcc各版本优先级</span><br>sudo update-alternatives --config gcc<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看g++各版本优先级</span><br>sudo update-alternatives --config g++<br></code></pre></td></tr></table></figure><p>如上的命令后，gcc-9和g++-9的优先级设为最高，默认使用该版本，如需检查默认gcc&#x2F;g++版本，使用如下命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">gcc -v<br>g++ -v<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>CPP_Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+      <tag>gcc/g++</tag>
+      
+      <tag>c/c++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2023/01/23/hello-world/"/>
     <url>/2023/01/23/hello-world/</url>
