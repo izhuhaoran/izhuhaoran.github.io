@@ -35,9 +35,4 @@ img.img-center {
     text-align: center;
 }
 
-.markdown-body > img {
-    /* max-width: 90%; */
-    margin: 0rem;
-    display: block;
-    text-align: center;
-  }
+

@@ -16,24 +16,24 @@
   <meta name="author" content="zhuhr">
   <meta name="keywords" content="">
   
-    <meta name="description" content="高版本Ubuntu安装低版本gcc Ubuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法 1. 首先需要简单介绍常用国内apt源--&gt;阿里云和清华云(此步骤只是参考可略过) 123456789">
+    <meta name="description" content="OpenMP学习笔记 OpenMP是目前常见的C++多线程并行库，本笔记主要记录对于OpenMP的一些学习经验，平台为ubuntu 1. OpenMP编译 本节以test.C为例，说明如何编译使用OpenMP的c++代码  g++编译选项  1g++ -fopenmp test.C -o testDemo  CMake编译  123456789101112131415161718192021222">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高版本Ubuntu安装低版本gcc">
-<meta property="og:url" content="https://izhuhaoran.github.io/2023/01/23/Linux_Note/%E9%AB%98%E7%89%88%E6%9C%ACUbuntu%E5%AE%89%E8%A3%85%E4%BD%8E%E7%89%88%E6%9C%ACgcc/index.html">
+<meta property="og:title" content="OpenMP学习笔记">
+<meta property="og:url" content="https://izhuhaoran.github.io/2023/01/24/CPP_Note/OpenMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="zhuhr">
-<meta property="og:description" content="高版本Ubuntu安装低版本gcc Ubuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5&#x2F;gcc-7的简单方法 1. 首先需要简单介绍常用国内apt源--&gt;阿里云和清华云(此步骤只是参考可略过) 123456789">
+<meta property="og:description" content="OpenMP学习笔记 OpenMP是目前常见的C++多线程并行库，本笔记主要记录对于OpenMP的一些学习经验，平台为ubuntu 1. OpenMP编译 本节以test.C为例，说明如何编译使用OpenMP的c++代码  g++编译选项  1g++ -fopenmp test.C -o testDemo  CMake编译  123456789101112131415161718192021222">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-23T05:24:23.231Z">
-<meta property="article:modified_time" content="2023-01-23T05:43:09.941Z">
+<meta property="article:published_time" content="2023-01-24T12:58:47.188Z">
+<meta property="article:modified_time" content="2023-01-24T13:02:15.948Z">
 <meta property="article:author" content="zhuhr">
-<meta property="article:tag" content="gcc&#x2F;g++">
 <meta property="article:tag" content="c&#x2F;c++">
 <meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="openmp">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>高版本Ubuntu安装低版本gcc - zhuhr</title>
+  <title>OpenMP学习笔记 - zhuhr</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -220,7 +220,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="高版本Ubuntu安装低版本gcc"></span>
+            <span id="subtitle" data-typed-text="OpenMP学习笔记"></span>
           
         </div>
 
@@ -231,8 +231,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-23 13:24" pubdate>
-          2023年1月23日 下午
+        <time datetime="2023-01-24 20:58" pubdate>
+          2023年1月24日 晚上
         </time>
       </span>
     
@@ -243,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          1.2k 字
         
       </span>
     
@@ -254,7 +254,7 @@
         
         
         
-          29 分钟
+          11 分钟
         
       </span>
     
@@ -300,31 +300,28 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">高版本Ubuntu安装低版本gcc</h1>
+            <h1 style="display: none">OpenMP学习笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="高版本ubuntu安装低版本gcc">高版本Ubuntu安装低版本gcc</h1>
-<p>Ubuntu不同版本默认apt install gcc安装的gcc和g++版本不同，高版本Ubuntu无法直接通过apt install gcc安装低版本编译器，需要修改apt源，这里以Ubuntu22.04为例，给出安装gcc-5/gcc-7的简单方法</p>
-<p><strong>1. 首先需要简单介绍常用国内apt源--&gt;阿里云和清华云(此步骤只是参考可略过)</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br> <br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-updates main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-backports main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> jammy-security main restricted universe multiverse<br> <br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span><br> <br><span class="hljs-comment">## Pre-released source, not recommended.</span><br><span class="hljs-comment"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><br></code></pre></td></tr></table></figure>
-<p>上面源中jammy标识为ubuntu22.04，若为其他版本Ubuntu，将对应jammy改为其他版本标识，如focal即可，常用的Ubuntu版本代号如下：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">22</span>.<span class="hljs-number">04</span>：jammy<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">20</span>.<span class="hljs-number">04</span>：focal<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">18</span>.<span class="hljs-number">04</span>：bionic<br><span class="hljs-attribute">Ubuntu</span> <span class="hljs-number">16</span>.<span class="hljs-number">04</span>：xenial<br></code></pre></td></tr></table></figure>
-<p><strong>2. Ubuntu22.04默认安装gcc-11版本，如果需要安装低版本，可以修改apt源，添加低版本ubuntu源来安装</strong></p>
-<p>使用下面命令修改apt源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/apt/sources.list<br></code></pre></td></tr></table></figure>
-<p>如要安装gcc-7，在sources.list文件末尾添加Ubuntu 20.04：focal的源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> focal main universe<br></code></pre></td></tr></table></figure>
-<p>如要安装gcc-5，在sources.list文件末尾添加Ubuntu 16.04：focal的源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">deb https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/ubuntu/</span> xenial main universe<br></code></pre></td></tr></table></figure>
-<p>sources.list文件修改完毕后，执行以下命令加载源 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">sudo apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br></code></pre></td></tr></table></figure></p>
-<p>注意，有时update时会报错, 提示GPG error缺少公钥，多见于添加了xenial版本源</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">W: GPG error: http://mirrors.aliyun.com/ubuntu xenial InRelease: The <span class="hljs-keyword">following</span> signatures couldn<span class="hljs-string">&#x27;t be verified because the public key is not available: NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32</span><br><span class="hljs-string">E: The repository &#x27;</span>http://mirrors.aliyun.com/ubuntu xenial InReleas<span class="hljs-string">e&#x27; is not signed.</span><br><span class="hljs-string">N: Updating from such a repository can&#x27;</span>t be done securely, <span class="hljs-keyword">and</span> <span class="hljs-keyword">is</span> therefore disabled <span class="hljs-keyword">by</span> <span class="hljs-keyword">default</span>.<br>N: See apt-secure(<span class="hljs-number">8</span>) manpage <span class="hljs-keyword">for</span> repository creation <span class="hljs-keyword">and</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">configuration</span> details.<br></code></pre></td></tr></table></figure>
-<p>此时，解决办法根据报错信息“NO_PUBKEY 40976EAF437D05B5 NO_PUBKEY 3B4FE6ACC0B21F32”导入对应公钥即可</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">40976</span>EAF437D05B5<br>sudo apt-key adv <span class="hljs-attr">--keyserver</span> keyserver<span class="hljs-selector-class">.ubuntu</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--recv-keys</span> <span class="hljs-number">3</span>B4FE6ACC0B21F32<br></code></pre></td></tr></table></figure>
-<p>然后，再次sudo apt-get update，之后就可以直接apt安装gcc对应版本</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">5</span><br><span class="hljs-attribute">sudo</span> apt install gcc-<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+                <h1 id="openmp学习笔记">OpenMP学习笔记</h1>
+<p>OpenMP是目前常见的C++多线程并行库，本笔记主要记录对于OpenMP的一些学习经验，平台为ubuntu</p>
+<h2 id="openmp编译">1. OpenMP编译</h2>
+<p>本节以test.C为例，说明如何编译使用OpenMP的c++代码</p>
+<ol type="1">
+<li><strong>g++编译选项</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">g++ -fopenmp test.C -o testDemo<br></code></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li><strong>CMake编译</strong></li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)<br><span class="hljs-keyword">project</span>(testDemo)<br><br><span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD <span class="hljs-number">14</span>)<br><span class="hljs-comment"># set(CMAKE_VERBOSE_MAKEFILE ON)</span><br><span class="hljs-comment"># set(CMAKE_BUILD_TYPE &quot;Debug&quot;)</span><br><span class="hljs-keyword">set</span>(CMAKE_BUILD_TYPE <span class="hljs-string">&quot;Release&quot;</span>)<br><br><span class="hljs-comment"># set(CMAKE_CXX_FLAGS &quot;-O3 -Wall -DOPENMP&quot;) </span><br><br><span class="hljs-comment"># openMP settings</span><br><span class="hljs-keyword">FIND_PACKAGE</span>(OpenMP REQUIRED)<br><span class="hljs-keyword">if</span> (OPENMP_FOUND)<br>    <span class="hljs-keyword">message</span>(<span class="hljs-string">&quot;OPENMP FOUND&quot;</span>)<br>    <span class="hljs-keyword">set</span>(CMAKE_C_FLAGS <span class="hljs-string">&quot;$&#123;CMAKE_C_FLAGS&#125; $&#123;OpenMP_C_FLAGS&#125;&quot;</span>)<br>    <span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">&quot;$&#123;CMAKE_CXX_FLAGS&#125; $&#123;OpenMP_CXX_FLAGS&#125;&quot;</span>)<br>    <span class="hljs-keyword">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="hljs-string">&quot;$&#123;CMAKE_EXE_LINKER_FLAGS&#125; $&#123;OpenMP_EXE_LINKER_FLAGS&#125;&quot;</span>)<br><span class="hljs-keyword">endif</span> ()<br><br><span class="hljs-keyword">set</span>(CMAKE_ARCHIVE_OUTPUT_DIRECTORY <span class="hljs-string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span>)<br><span class="hljs-keyword">set</span>(CMAKE_LIBRARY_OUTPUT_DIRECTORY <span class="hljs-string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/lib&quot;</span>)<br><span class="hljs-keyword">set</span>(CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="hljs-string">&quot;$&#123;CMAKE_BINARY_DIR&#125;/bin&quot;</span>)<br><br><span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">$&#123;PROJECT_NAME&#125;</span> ./<span class="hljs-keyword">test</span>.C)<br></code></pre></td></tr></table></figure>
+<p>需要注意的是：CMake也可以直接通过设置CMAKE_CXX_FLAGS，添加-fopenmp实现编译OpenMP的c++代码，但推荐使用如上的FIND_PACKAGE方法</p>
+<h2 id="openmp常用方法">2. OpenMP常用方法</h2>
+<p>待补充</p>
+<h2 id="openmp高级方法">3. OpenMP高级方法</h2>
+<p>待补充</p>
 
                 
               </div>
@@ -343,7 +340,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux-Notes/" class="category-chain-item">Linux_Notes</a>
+  <a href="/categories/CPP-Notes/" class="category-chain-item">CPP_Notes</a>
   
   
 
@@ -358,11 +355,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/gcc-g/">#gcc/g++</a>
-      
         <a href="/tags/c-c/">#c/c++</a>
       
         <a href="/tags/ubuntu/">#ubuntu</a>
+      
+        <a href="/tags/openmp/">#openmp</a>
       
     </div>
   
@@ -374,8 +371,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>高版本Ubuntu安装低版本gcc</div>
-      <div>https://izhuhaoran.github.io/2023/01/23/Linux_Note/高版本Ubuntu安装低版本gcc/</div>
+      <div>OpenMP学习笔记</div>
+      <div>https://izhuhaoran.github.io/2023/01/24/CPP_Note/OpenMP学习笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -387,7 +384,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月23日</div>
+          <div>2023年1月24日</div>
         </div>
       
       
@@ -419,18 +416,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/23/Linux_Note/%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="内网/校园网服务器设置代理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内网/校园网服务器设置代理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/01/23/Linux_Note/gcc%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/" title="Ubuntu gcc/g++默认版本切换">
-                        <span class="hidden-mobile">Ubuntu gcc/g++默认版本切换</span>
+                      <a href="/2023/01/24/CPP_Note/cilkplus%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="cilk plus学习记录">
+                        <span class="hidden-mobile">cilk plus学习记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
